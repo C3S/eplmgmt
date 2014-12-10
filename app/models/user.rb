@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def get_ldap_nickname
-    nick = Devise::LDAP::Adapter.get_ldap_param(self.name, 'nick')[0] rescue ''
+    nick = Devise::LDAP::Adapter.get_ldap_param(self.name, 'cn')[0] rescue ''
     nick = 'anonymous' if nick.length < 2
     self.nickname = nick
   end
