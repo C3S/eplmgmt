@@ -13,6 +13,10 @@
   <div class="meny-arrow"></div>
 <% end %>
 
+<div id="grouppadlink">
+  <a href="https://gpad.c3s.cc">Gruppenpads</a>
+</div>
+
 <% if @is_public_readonly %>
 <iframe frameborder="0" height="100%" width="100%" src="/epl/p/<%= @pad.readonly_id %>"></iframe>
 <% else %>

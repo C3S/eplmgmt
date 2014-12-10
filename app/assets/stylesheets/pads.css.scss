@@ -63,6 +63,29 @@
 	        box-sizing: border-box;
 }
 
+#grouppadlink {
+	position: fixed;
+	right: 100px;
+	bottom: 0;
+	z-index: 100;
+}
+
+#grouppadlink a {
+	background-color: #ff9a26; 
+	color: #fff;
+	font-weight: bold;
+	padding: 5px;
+	display: block;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+#grouppadlink a:hover {
+	color: #fff;
+	background-color: #ef8a16;
+	text-decoration: none;
+}
+
 /*.form-inline span label.collection_radio_buttons {*/
   /*margin-right: 15px;*/
 /*}*/
