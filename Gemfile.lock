@@ -148,7 +148,6 @@ GEM
     paper_trail (3.0.0)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    pg (0.17.1)
     polyglot (0.3.3)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -293,9 +292,8 @@ DEPENDENCIES
   jquery-rails
   mediawiki-gateway
   paper_trail (>= 3.0.0.beta1)
-  pg
   quiet_assets
-  rails (= 4.0.2)
+  rails (>= 4.0.2)
   rails_admin
   rails_layout
   rb-fchange

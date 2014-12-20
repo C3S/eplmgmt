@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140218121301) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "group_users", force: true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
@@ -24,8 +21,8 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.datetime "updated_at"
   end
 
-  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id", using: :btree
-  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id", using: :btree
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id"
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id"
 
   create_table "groups", force: true do |t|
     t.string   "group_id"
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.datetime "updated_at"
   end
 
-  add_index "groups", ["group_id"], name: "index_groups_on_group_id", unique: true, using: :btree
+  add_index "groups", ["group_id"], name: "index_groups_on_group_id", unique: true
 
   create_table "pads", force: true do |t|
     t.string   "pad_id"
@@ -53,8 +50,8 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.boolean  "was_public_writeable"
   end
 
-  add_index "pads", ["group_id"], name: "index_pads_on_group_id", using: :btree
-  add_index "pads", ["pad_id"], name: "index_pads_on_pad_id", unique: true, using: :btree
+  add_index "pads", ["group_id"], name: "index_pads_on_group_id"
+  add_index "pads", ["pad_id"], name: "index_pads_on_pad_id", unique: true
 
   create_table "rails_admin_histories", force: true do |t|
     t.text     "message"
@@ -62,12 +59,12 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 8
+    t.integer  "year",       limit: 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -77,8 +74,8 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -98,15 +95,15 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.string   "nickname"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
@@ -117,6 +114,6 @@ ActiveRecord::Schema.define(version: 20140218121301) do
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end
