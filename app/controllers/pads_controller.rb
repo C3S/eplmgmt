@@ -65,6 +65,11 @@ class PadsController < ApplicationController
     elsif can?(:read, @pad) && @pad.is_public_readonly
       @is_public_readonly = true
     end
+
+    if params[:version].present?
+      @version = params[:version].to_i
+    end
+
   end
 
   # GET /pads/new

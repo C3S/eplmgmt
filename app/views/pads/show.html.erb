@@ -17,11 +17,34 @@
   <a href="/">Gruppenpads</a>
 </div>
 
-<% if @is_public_readonly %>
-<iframe frameborder="0" height="100%" width="100%" src="/epl/p/<%= @pad.readonly_id %>"></iframe>
+<% if @version %>
+  <iframe frameborder="0" id="pad-frame" height="100%" width="100%" src="/epl/p/<%= @pad.readonly_id %>"></iframe>
 <% else %>
-<iframe frameborder="0" id="pad-frame" height="100%" width="100%" src="/epl/p/<%= @pad.pad_id %>"></iframe>
+  <% if @is_public_readonly %>
+  <iframe frameborder="0" id="pad-frame" height="100%" width="100%" src="/epl/p/<%= @pad.readonly_id %>"></iframe>
+  <% else %>
+  <iframe frameborder="0" id="pad-frame" height="100%" width="100%" src="/epl/p/<%= @pad.pad_id %>"></iframe>
+  <% end %>
 <% end %>
+
+<script type="text/javascript">
+  /* fix for missing version link */
+  function loadVersion() {
+    var anchor = document.location.hash;
+    if(anchor) {
+      var framesrc = $("#pad-frame").attr('src')
+      if( framesrc.indexOf('timeslider') == -1 ) {
+        $("#pad-frame").attr('src', framesrc + "/timeslider" + anchor)
+      } else {
+        location.reload(true);
+      }
+    }
+  }
+  $(document).ready(function() {
+    loadVersion()
+    $(window).bind( 'hashchange', function(e) { loadVersion() });
+  });
+</script>
 
 <% content_for :title do %>
     <%= @pad.name %>
